@@ -1,4 +1,4 @@
-import { context, getOctokit } from "@actions/github";
+import { context, getOctokit } from '@actions/github';
 
 interface PullRequestDetailsResponse {
   repository: {
@@ -22,12 +22,15 @@ interface PullRequestDetailsResponse {
 export async function isPullRequest(token: string) {
   const client = getOctokit(token);
 
-  const { data: { pull_request } } = await client.rest.issues.get({
+  const {
+    data: { pull_request: pullRequest },
+  } = await client.rest.issues.get({
     ...context.repo,
+    // eslint-disable-next-line camelcase
     issue_number: context.issue.number,
   });
 
-  return !!pull_request;
+  return !!pullRequest;
 }
 
 export async function pullRequestDetails(token: string) {
@@ -35,10 +38,7 @@ export async function pullRequestDetails(token: string) {
 
   const {
     repository: {
-      pullRequest: {
-        baseRef,
-        headRef,
-      },
+      pullRequest: { baseRef, headRef },
     },
   } = await client.graphql<PullRequestDetailsResponse>(
     `
@@ -63,14 +63,14 @@ export async function pullRequestDetails(token: string) {
     `,
     {
       ...context.repo,
-      number: context.issue.number
+      number: context.issue.number,
     },
   );
 
   return {
-    base_ref: baseRef.name,
-    base_sha: baseRef.target.oid,
-    head_ref: headRef.name,
-    head_sha: headRef.target.oid,
+    baseRef: baseRef.name,
+    baseSha: baseRef.target.oid,
+    headRef: headRef.name,
+    headSha: headRef.target.oid,
   };
 }

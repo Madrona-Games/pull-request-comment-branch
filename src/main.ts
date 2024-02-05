@@ -1,26 +1,21 @@
-import { getInput, setFailed, setOutput } from "@actions/core";
+import { getInput, setFailed, setOutput } from '@actions/core';
 
-import { isPullRequest, pullRequestDetails } from "./PullRequests";
+import { isPullRequest, pullRequestDetails } from './pull-requests';
 
 export async function run() {
   try {
-    const token = getInput("repo_token", { required: true });
+    const token = getInput('repo_token', { required: true });
 
-    if (!isPullRequest(token)) {
-      throw Error("Comment is not on a pull request");
+    if (!(await isPullRequest(token))) {
+      throw new Error('Comment is not on a pull request');
     }
 
-    const {
-      base_ref,
-      base_sha,
-      head_ref,
-      head_sha,
-    } = await pullRequestDetails(token);
+    const { baseRef, baseSha, headRef, headSha } = await pullRequestDetails(token);
 
-    setOutput("base_ref", base_ref);
-    setOutput("base_sha", base_sha);
-    setOutput("head_ref", head_ref);
-    setOutput("head_sha", head_sha);
+    setOutput('base_ref', baseRef);
+    setOutput('base_sha', baseSha);
+    setOutput('head_ref', headRef);
+    setOutput('head_sha', headSha);
   } catch (error) {
     if (error instanceof Error) {
       setFailed(error.message);
@@ -30,4 +25,4 @@ export async function run() {
   }
 }
 
-run();
+await run();

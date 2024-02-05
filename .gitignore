@@ -1,10 +1,6 @@
-__tests__/runner/*
-
-# comment out in distribution branches
-dist/
-
-node_modules/
-lib/
+# Dependency directory
+node_modules
+lib
 
 # Rest pulled from https://github.com/github/gitignore/blob/master/Node.gitignore
 # Logs
@@ -94,3 +90,15 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Ignore built ts files
+__tests__/runner/*
+
+# IDE files
+.idea
+.vscode
+*.code-workspace
