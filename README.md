@@ -28,7 +28,7 @@ jobs:
             - uses: actions/checkout@v4
               if: success()
               with:
-                  ref: ${{ steps.comment-branch.outputs.head_ref }}
+                  ref: ${{ steps.comment-branch.outputs.head-ref }}
 
             - run: git rev-parse --abbrev-ref HEAD
             - run: git rev-parse --verify HEAD

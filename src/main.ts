@@ -4,7 +4,7 @@ import { isPullRequest, pullRequestDetails } from './pull-requests';
 
 export async function run() {
   try {
-    const token = getInput('repo_token', { required: true });
+    const token = getInput('repo-token', { required: true });
 
     if (!(await isPullRequest(token))) {
       throw new Error('Comment is not on a pull request');
@@ -12,10 +12,10 @@ export async function run() {
 
     const { baseRef, baseSha, headRef, headSha } = await pullRequestDetails(token);
 
-    setOutput('base_ref', baseRef);
-    setOutput('base_sha', baseSha);
-    setOutput('head_ref', headRef);
-    setOutput('head_sha', headSha);
+    setOutput('base-ref', baseRef);
+    setOutput('base-sha', baseSha);
+    setOutput('head-ref', headRef);
+    setOutput('head-sha', headSha);
   } catch (error) {
     if (error instanceof Error) {
       setFailed(error.message);

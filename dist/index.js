@@ -28922,15 +28922,15 @@ __nccwpck_require__.r(__webpack_exports__);
 
 async function run() {
     try {
-        const token = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)('repo_token', { required: true });
+        const token = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)('repo-token', { required: true });
         if (!(await (0,_pull_requests__WEBPACK_IMPORTED_MODULE_1__/* .isPullRequest */ .U)(token))) {
             throw new Error('Comment is not on a pull request');
         }
         const { baseRef, baseSha, headRef, headSha } = await (0,_pull_requests__WEBPACK_IMPORTED_MODULE_1__/* .pullRequestDetails */ .o)(token);
-        (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)('base_ref', baseRef);
-        (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)('base_sha', baseSha);
-        (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)('head_ref', headRef);
-        (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)('head_sha', headSha);
+        (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)('base-ref', baseRef);
+        (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)('base-sha', baseSha);
+        (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)('head-ref', headRef);
+        (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)('head-sha', headSha);
     }
     catch (error) {
         if (error instanceof Error) {
