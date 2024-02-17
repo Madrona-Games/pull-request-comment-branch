@@ -5,14 +5,14 @@
   "description": "Gets the head ref and sha of a pull request comment",
   "scripts": {
     "prepare": "lefthook install",
-    "build": "npm install && tsc && ncc build ./src/main.ts --source-map --license license.txt",
+    "build": "npm install && tsc && ncc build ./src/main.ts --source-map --license license.txt --minify -o dist",
     "test": "tsc --noEmit",
     "lint": "prettier --check \"src/**/*.{js,ts}\" && eslint src/**/*.ts",
     "format": "prettier --write \"src/**/*.{js,ts}\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Madrona-Games/pull-request-comment-branch.git"
+    "url": "https://github.com/Madrona-Games/pull-request-comment-branch.git"
   },
   "keywords": [
     "actions"
